@@ -1,5 +1,4 @@
 #include <iostream>
-#include <getopt.h>
 #include "libs/CLI11.hpp"
 
 int main(int argc, char *argv[])
