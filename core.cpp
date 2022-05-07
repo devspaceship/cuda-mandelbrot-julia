@@ -1,20 +1,6 @@
 #include <iostream>
 #include <getopt.h>
-
-void usage()
-{
-    std::cout
-        << "Usage: ./core [OPTION]...\n"
-        << "Compute the number of iterations before leaving bounds\n\n"
-        << "  --x_a             the x coordinate of the top left corner\n"
-        << "  --y_a             the y coordinate of the top left corner\n"
-        << "  --x_b             the x coordinate of the bottom right corner\n"
-        << "  --y_b             the y coordinate of the bottom right corner\n"
-        << "  --width           the horizontal resolution of the computation\n"
-        << "  --height          the vertical resolution of the computation\n"
-        << "  -h, --help        display this help and exit\n"
-        << std::endl;
-}
+#include "libs/CLI11.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -25,36 +11,14 @@ int main(int argc, char *argv[])
     int w = 1920;
     int h = 1080;
 
-    static struct option long_options[] = {
-        {"x_a", required_argument, NULL, 0},
-        {"y_a", required_argument, NULL, 0},
-        {"x_b", required_argument, NULL, 0},
-        {"y_b", required_argument, NULL, 0},
-        {"width", required_argument, NULL, 0},
-        {"height", required_argument, NULL, 0},
-        {"help", no_argument, NULL, 'h'},
-        {NULL, 0, NULL, 0},
-    };
-
-    int option_index = 0;
-    char c;
-    while ((c = getopt_long(argc, argv, "h", long_options, &option_index)) != -1)
-    {
-        switch (c)
-        {
-        case 0:
-            std::cout << "option " << long_options[option_index].name;
-            if (optarg)
-            {
-                std::cout << " with arg " << optarg;
-            }
-            std::cout << std::endl;
-            break;
-        case 'h':
-            usage();
-            return 0;
-        }
-    }
+    CLI::App app{"Compute the number of iterations before leaving bounds"};
+    app.add_option("--x_a", x_a, "the x coordinate of the top left corner");
+    app.add_option("--y_a", y_a, "the y coordinate of the top left corner");
+    app.add_option("--x_b", x_b, "the x coordinate of the bottom right corner");
+    app.add_option("--y_b", y_b, "the y coordinate of the bottom right corner");
+    app.add_option("--width", w, "the horizontal resolution of the computation");
+    app.add_option("--height", h, "the vertical resolution of the computation");
+    CLI11_PARSE(app, argc, argv);
 
     return 0;
 }
