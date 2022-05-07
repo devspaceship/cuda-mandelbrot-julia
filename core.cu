@@ -6,7 +6,8 @@ __global__ void computation_kernel(float x_min, float x_max, float y_min, float 
   int idx = threadIdx.x + blockIdx.x * blockDim.x;
   if (idx < width * height)
   {
-    // magic happens here
+    // TODO Compute position in grid
+    // TODO Compute number of iterations and put in shared memory
   }
 }
 
@@ -21,6 +22,10 @@ void mandelbrot_set(float x_min, float x_max, float y_min, float y_max, int widt
 {
   float x_step = (x_max - x_min) / width;
   float y_step = (y_max - y_min) / height;
+  // TODO Allocate memory for grid
+  // TODO Initialize grid
+  // TODO Launch kernel
+  // TODO Free memory
 }
 
 int main(int argc, char *argv[])
