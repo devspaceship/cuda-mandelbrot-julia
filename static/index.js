@@ -1,0 +1,1 @@
+alert('Mandelbrot Set');
