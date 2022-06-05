@@ -12,5 +12,5 @@ def index():
 
 @app.route("/api/mandelbrot")
 def mandelbrot():
-    output = subprocess.run(["./core"], capture_output=True)
+    output = subprocess.run(["./build/core"], capture_output=True)
     return {"data": output.stdout.decode("utf-8")}
