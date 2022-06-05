@@ -49,9 +49,6 @@ void mandelbrot_set(float x_min, float x_max, float y_min, float y_max, int widt
   int grid_size, block_size;
   set_sizes(&grid_size, &block_size, width * height);
 
-  std::cout << "Grid size: " << grid_size << std::endl;
-  std::cout << "Block size: " << block_size << std::endl;
-
   computation_kernel<<<grid_size, block_size>>>(x_min, x_max, y_min, y_max, width, height, iterations, grid_vector);
 
   for (int i = 0; i < height; i++)
