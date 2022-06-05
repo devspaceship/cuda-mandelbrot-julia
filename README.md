@@ -1,6 +1,6 @@
 # CUDA Mandelbrot Julia
 
-A visualizer for the Mandelbrot set and Julia sets using the GPU with CUDA
+A visualizer for the Mandelbrot set and Julia sets using the GPU with CUDA®
 
 ## Dependencies
 
@@ -8,7 +8,11 @@ A visualizer for the Mandelbrot set and Julia sets using the GPU with CUDA
 
 ## Usage
 
-- Compile the core: `./build.sh`
+- Compile the core CUDA® code: `make`
+- Create a Python virtual environmnent: `python3.10 -m venv .venv --prompt server`
+- Activate the virtual environment: `source .venv/bin/activate`
+- Install the dependencies: `pip install -r requirements.txt`
+- Run the Flask server: `flask run`
 
 ## Roadmap
 
