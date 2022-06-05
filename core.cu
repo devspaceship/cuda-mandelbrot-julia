@@ -88,11 +88,11 @@ void mandelbrot_set(float x_min, float x_max, float y_min, float y_max, int widt
 int main(int argc, char *argv[])
 {
   float x_min = -2;
-  float x_max = 2;
-  float y_min = -2;
-  float y_max = 2;
-  int w = 400;
-  int h = 400;
+  float x_max = 1;
+  float y_min = -1.5;
+  float y_max = 1.5;
+  int w = 800;
+  int h = 800;
   unsigned char iterations = 0xfe;
 
   CLI::App app{"Compute the number of iterations before leaving bounds"};
