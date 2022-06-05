@@ -32,8 +32,8 @@ __global__ void computation_kernel(float x_min, float x_max, float y_min, float 
   {
     int i = idx / width;
     int j = idx % width;
-    int x = j * (x_max - x_min) / (width - 1) + x_min;
-    int y = i * (y_max - y_min) / (height - 1) + y_min;
+    float x = j * (x_max - x_min) / (width - 1) + x_min;
+    float y = i * (y_max - y_min) / (height - 1) + y_min;
 
     thrust::complex<float> c = thrust::complex<float>(x, y);
     thrust::complex<float> z = thrust::complex<float>(0, 0);
