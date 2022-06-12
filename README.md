@@ -18,6 +18,9 @@ A visualizer for the Mandelbrot set and Julia sets using the GPU with CUDA®
 
 - [x] Change CUDA ouput to Base64 of 8bit uint
 - [x] Display Mandelbrot set
-- [ ] Add possiblity of zoom
-- [ ] Add colors
+- [x] Add possiblity of zoom
+- [x] Add colors
+- [ ] Wheel zoom
 - [ ] Add julia sets
+- [ ] Add a way to change the Julia set
+- [ ] Add a way to change the color scheme
