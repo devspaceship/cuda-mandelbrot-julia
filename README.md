@@ -20,6 +20,7 @@ A visualizer for the Mandelbrot set and Julia sets using the GPU with CUDA®
 - [x] Display Mandelbrot set
 - [x] Add possiblity of zoom
 - [x] Add colors
+- [ ] Change click zoom to recenter
 - [ ] Wheel zoom
 - [ ] Double precision
 - [ ] Add julia sets
