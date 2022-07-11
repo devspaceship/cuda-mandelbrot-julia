@@ -90,8 +90,13 @@ const main = async () => {
 
 // TODO Wait 70ms without wheel event to prevent multiple zoom events
 const zoom_click = async (event) => {
-  const scaling_factor_wheel = 1 / (-event.deltaY * ZOOMING_COEFFICIENT);
-  const scaling_factor = 1 / 2;
+  // const scaling_factor_wheel = 1 / (-event.deltaY * ZOOMING_COEFFICIENT);
+  let scaling_factor = 1 / 2;
+  if (event.type === 'contextmenu') {
+    scaling_factor = 1 / scaling_factor;
+    event.preventDefault();
+  }
+  debugger;
   const i = event.offsetY;
   const j = event.offsetX;
   const center_x = (j / canvas.width) * (x_max - x_min) + x_min;
@@ -107,5 +112,6 @@ const zoom_click = async (event) => {
 
 // canvas.addEventListener('wheel', zoom);
 canvas.addEventListener('click', zoom_click);
+canvas.addEventListener('contextmenu', zoom_click);
 
 main();
