@@ -25,18 +25,18 @@
 #include "libs/CLI11.hpp"
 #include "libs/base64.h"
 
-__global__ void computation_kernel(float x_min, float x_max, float y_min, float y_max, int width, int height, int iterations, unsigned char *grid_vector)
+__global__ void computation_kernel(double x_min, double x_max, double y_min, double y_max, int width, int height, int iterations, unsigned char *grid_vector)
 {
   int idx = threadIdx.x + blockIdx.x * blockDim.x;
   if (idx < width * height)
   {
     int i = idx / width;
     int j = idx % width;
-    float x = j * (x_max - x_min) / (width - 1) + x_min;
-    float y = i * (y_max - y_min) / (height - 1) + y_min;
+    double x = j * (x_max - x_min) / (width - 1) + x_min;
+    double y = i * (y_max - y_min) / (height - 1) + y_min;
 
-    thrust::complex<float> c = thrust::complex<float>(x, y);
-    thrust::complex<float> z = thrust::complex<float>(0, 0);
+    thrust::complex<double> c = thrust::complex<double>(x, y);
+    thrust::complex<double> z = thrust::complex<double>(0, 0);
     for (int k = 0; k <= iterations; k++)
     {
       z = z * z + c;
@@ -62,11 +62,8 @@ void print_b64_grid_vector(unsigned char *grid_vector, int width, int height)
   std::cout << encoded_string << std::endl;
 }
 
-void mandelbrot_set(float x_min, float x_max, float y_min, float y_max, int width, int height, int iterations)
+void mandelbrot_set(double x_min, double x_max, double y_min, double y_max, int width, int height, int iterations)
 {
-  float x_step = (x_max - x_min) / (width - 1);
-  float y_step = (y_max - y_min) / (height - 1);
-
   unsigned char *grid_vector;
   cudaMallocManaged(&grid_vector, width * height * sizeof(int));
   for (int i = 0; i < width * height; i++)
@@ -87,10 +84,10 @@ void mandelbrot_set(float x_min, float x_max, float y_min, float y_max, int widt
 
 int main(int argc, char *argv[])
 {
-  float x_min = -2;
-  float x_max = 1;
-  float y_min = -1.5;
-  float y_max = 1.5;
+  double x_min = -2;
+  double x_max = 1;
+  double y_min = -1.5;
+  double y_max = 1.5;
   int w = 800;
   int h = 800;
   unsigned char iterations = 0xfe;
